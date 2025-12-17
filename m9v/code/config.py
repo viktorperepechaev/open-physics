@@ -34,7 +34,8 @@ class SimulationConfig:
 
     neighbourhood: Neighbourhood = Neighbourhood.VON_NEUMANN
 
-    seed_solid_top_edge: bool = True  # заморозить верхнюю строку как лёд
+    seed_solid_top_edge: bool = False  # заморозить верхнюю строку как лёд
+    random_seed_fraction: float = 0.05  # 5% клеток будут льдом изначально
 
     rng_seed: int = 42
 

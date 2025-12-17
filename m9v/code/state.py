@@ -36,5 +36,14 @@ def create_initial_state(cfg=CONFIG) -> CAState:
         solid[0, :] = True
         temp[0, :] = cfg.T_solid_seed
 
+    if cfg.random_seed_fraction > 0:
+        rng = np.random.default_rng(cfg.rng_seed)
+        
+        random_mask = rng.random((nx, ny)) < cfg.random_seed_fraction
+        
+        solid = np.logical_or(solid, random_mask)
+        
+        temp[solid] = cfg.T_solid_seed
+
     return CAState(temp=temp, solid=solid)
 
