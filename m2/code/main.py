@@ -64,6 +64,8 @@ def main() -> None:
 
     table = Table(width=CONFIG.width, height=CONFIG.height)
 
+    font = pygame.font.Font(None, 24)
+
     balls: list[Ball] = []
     presets = CONFIG.ball_presets
 
@@ -72,8 +74,12 @@ def main() -> None:
         balls.append(create_ball(table, preset))
 
     running = True
+
+    sim_time = 0.0
     while running:
         dt = clock.tick(CONFIG.fps) / 1000.0
+
+        sim_time += dt
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -93,7 +99,22 @@ def main() -> None:
                 int(ball.radius),
             )
 
+        all_energy = 0.0
+        for ball in balls:
+            v2 = float(ball.velocity[0] ** 2 + ball.velocity[1] ** 2)
+            all_energy += 0.5 * ball.mass * v2
+
+        time_surface = font.render(
+            f"t = {sim_time:.2f} s, E = {all_energy:.2f}",
+            True,
+            (255, 255, 255),
+        )
+
+        screen.blit(time_surface, (10, 10))
+
         pygame.display.flip()
+
+
 
     pygame.quit()
 

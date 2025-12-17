@@ -43,7 +43,7 @@ class SimulationConfig:
     background_color: Tuple[int, int, int] = (10, 10, 20)
     fps: int = 60
 
-    default_num_balls: int = 10
+    default_num_balls: int = 7
 
     ball_presets: list[BallPreset] = field(default_factory=list)
 
@@ -55,22 +55,39 @@ class SimulationConfig:
 
 CONFIG = SimulationConfig(
     ball_presets=[
+       #  BallPreset(
+       #      radius=100.0,
+       #      speed=100.0,
+       #      angle_deg=90.0,
+       #      position=(100.0, 300.0),
+       #      color=(255, 100, 100),
+       #      mass=30.0,
+       #  ),
+
+       #  BallPreset(
+       #      radius=25.0,
+       #      speed=0.0,
+       #      angle_deg=0.0, 
+       #      position=(400.0, 300.0),
+       #      color=(100, 255, 100),
+       #      mass=5.0
+       #  ),
          BallPreset(
-             radius=100.0,
-             speed=100.0,
-             angle_deg=90.0,
-             position=(100.0, 300.0),
+             radius=50.0,
+             speed=50,
+             angle_deg=0,
+             position=(200.0, 300.0),
              color=(255, 100, 100),
              mass=30.0,
          ),
 
          BallPreset(
-             radius=25.0,
-             speed=0.0,
-             angle_deg=0.0, 
+             radius=75.0,
+             speed=50.0,
+             angle_deg=180, 
              position=(400.0, 300.0),
              color=(100, 255, 100),
-             mass=5.0
+             mass=60.0
          ),
     ]
 )
